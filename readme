@@ -1,0 +1,17 @@
+== LibreFactory ==
+
+LibreFactory is an open-source implementation of Factorio[1] written in C++, 
+which is also targeting very... low powered hardware. That hardware being from
+Windows XP. My personal test rig is running Windows XP Home (x86) SP3 on an
+Intel Pentium 4 and a mere 512M of usable RAM. For the GPU, I scored an ATI
+Radeon 9000 for cheap, as the built-in GPU has long since died on me.
+
+This project is primarily targeting Windows XP, though I'll do my best to try
+and target newer systems on a best effort basis. But for the most part, this is
+simply a fun Windows project that I've decided to make open source.
+
+This project is licensed under BSD-4-Clause. It's a straight forward license
+that covers everything a license needs to. Lua is included as well scripting is
+very important, and it's under the generally very permissive MIT license.
+
+[1] https://factorio.com/
