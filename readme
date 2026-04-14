@@ -15,3 +15,11 @@ that covers everything a license needs to. Lua is included as well scripting is
 very important, and it's under the generally very permissive MIT license.
 
 [1] https://factorio.com/
+
+=== How do I build this? ===
+
+With the soon-to-be-implemented build script, '' build.cmd '' ! This handy lil
+piece of tooling completely negates the need for a build system, it IS the
+build system. The build script also takes in arguments, to run it, you'll need
+to use the Developer Command Prompt that comes installed with Visual Studio.
+(( this project doesn't use gcc or mingw to avoid additional suffering ))
