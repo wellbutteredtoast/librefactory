@@ -1,2 +1,6 @@
 deps/
 out/
+
+*.exe
+*.ilk
+*.pdb

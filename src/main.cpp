@@ -44,7 +44,7 @@ bool InitDirect3D(HWND hwnd, int width, int height)
 	{
 		char buf[64];
 		wsprintfA(buf, "CreateDevice failed: 0x%08X", (unsigned long)hr);
-		MessageBox(hwnd, buf, "D3D8 Error", MB_OK);
+		MessageBox(hwnd, buf, "D3D8 Error", MB_OK | MB_ICONERROR);
 		return false;
 	}
 
@@ -92,7 +92,7 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdLine, int cmd
 
 	if (!RegisterClassEx(&wc))
     {
-        MessageBox(NULL, "Window registration failed!", "Error", MB_OK);
+        MessageBox(NULL, "Window registration failed!", "Error", MB_OK | MB_ICONERROR);
         return 1;
     }
 
@@ -111,7 +111,7 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdLine, int cmd
 
 	if (!hwnd)
 	{
-		MessageBox(NULL, "CreateWindowEx() failed!", "Error", MB_OK);
+		MessageBox(NULL, "CreateWindowEx() failed!", "Error", MB_OK | MB_ICONERROR);
 		return 1;
 	}
 
@@ -121,7 +121,7 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdLine, int cmd
     /* Finally, init d3d8 proper */
     if (!InitDirect3D(hwnd, 640, 480))
     {
-        MessageBox(hwnd, "Direct3D 8 init failed!", "D3D8 Error", MB_OK);
+        MessageBox(hwnd, "Direct3D 8 init failed!", "D3D8 Error", MB_OK | MB_ICONERROR);
         return 1;
     }
 	
