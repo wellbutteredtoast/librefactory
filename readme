@@ -22,6 +22,24 @@ With the soon-to-be-implemented build script, '' build.cmd '' ! This handy lil
 piece of tooling completely negates the need for a build system, it IS the
 build system. The build script also takes in arguments, to run it, you'll need
 to use the Developer Command Prompt that comes installed with Visual Studio.
-(( this project doesn't use gcc or mingw to avoid additional suffering ))
 
 If compiling for non-Windows targets, please use the '' C++03 '' standard!
+
+If/when compiling for non-Windows targets (Linux, OSX, BSD), we recommend that
+you use LLVM/clang based compilers. GCC is completely fine, this is just a
+suggestion!
+
+=== What about Lua? ===
+
+Lua[1] is an embedded scripting language built in C and used in this project
+under the MIT license. Lua is also the same scripting language used in Factorio.
+
+Most of this engine is exposed through Lua, and a "base" Lua module for this
+project will also be worked on once there's an engine to expose. Mods and Lua
+scripts that are built for Factorio will NOT work here, because the APIs that
+are exposed are completely different even at a basic level.
+
+Documentation will be provided as time goes on, keep an eye our for a "docs"
+folder!
+
+[1] https://lua.org/about.html
