@@ -4,7 +4,7 @@
 
 /* libs before includes */
 #pragma comment(lib, "d3d8.lib")
-#pragma comment(lib, "d3d8x.lib")
+#pragma comment(lib, "d3dx8.lib")
 #pragma comment(lib, "dxguid.lib")
 
 #include <windows.h>
@@ -24,22 +24,30 @@ bool InitDirect3D(HWND hwnd, int width, int height)
 
 	/* Why do these need to be capitalized? why are bool and BOOL different? */
     pp.Windowed               = TRUE;
-    pp.SwapEffect             = D3DSWAPEFFECT_DISCARD;
-    pp.BackBufferFormat       = D3DFMT_UNKNOWN; /* matches current desktop format */
+    pp.SwapEffect             = D3DSWAPEFFECT_COPY;
+    pp.BackBufferFormat       = D3DFMT_R5G6B5; /* matches current desktop format */
+	pp.BackBufferCount        = 1;
     pp.BackBufferWidth        = width;
     pp.BackBufferHeight       = height;
     pp.EnableAutoDepthStencil = FALSE; /* 2D, no depth buffer needed */
 
     HRESULT hr = g_pD3D->CreateDevice(
         D3DADAPTER_DEFAULT,
-        D3DDEVTYPE_HAL, /* hardware acceleration */
+        D3DDEVTYPE_REF, /* reference, or software rendering */
         hwnd,
         D3DCREATE_SOFTWARE_VERTEXPROCESSING,
         &pp,
         &g_pDevice
     );
 
-	if (FAILED(hr)) return false;
+	if (FAILED(hr))
+	{
+		char buf[64];
+		wsprintfA(buf, "CreateDevice failed: 0x%08X", (unsigned long)hr);
+		MessageBox(hwnd, buf, "D3D8 Error", MB_OK);
+		return false;
+	}
+
     return true;
 }
 
@@ -50,7 +58,7 @@ void ShutdownDirect3D()
     if (g_pD3D)    { g_pD3D->Release();    g_pD3D    = NULL; }
 }
 
-/* Window procedures */
+/* Window procedure */
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     switch (msg)

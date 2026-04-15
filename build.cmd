@@ -12,7 +12,8 @@ set "ROOT=%~dp0"
 set "SRC=%ROOT%src"
 set "DEPS=%ROOT%deps"
 set "OUT=%ROOT%out"
-set "INC=/I"%ROOT%include" /I"%DEPS%\miniaudio" /I"%DEPS%\lua""
+rem Hardcoding the location of DirectX headers assuming windows XP ... edit if not matching yours!
+set "INC=/I"%ROOT%include" /I"%DEPS%\miniaudio" /I"%DEPS%\lua" /I"C:\Program Files\Microsoft DirectX SDK (August 2007)\Include""
 
 rem Need this because Lua produces many warnings
 set "DEFINES=/D_WIN32_WINNT=0x0501 /DWINVER=0x0501 /D_CRT_SECURE_NO_WARNINGS"
@@ -35,7 +36,7 @@ for /f "delims=" %%f in ('dir /b /a-d "%SRC%\*.cpp"') do (
 
 echo Linking...
 link /nologo /OUT:"%OUT%\librefactory.exe" /subsystem:windows ^
-    "%OUT%\*.obj" ^
-    kernel32.lib user32.lib winmm.lib opengl32.lib
+    "%OUT%\*.obj" /LIBPATH:"C:\Program Files\Microsoft DirectX SDK (August 2007)\Lib\x86" ^
+    kernel32.lib user32.lib winmm.lib gdi32.lib opengl32.lib d3d8.lib
 
 echo Done.
